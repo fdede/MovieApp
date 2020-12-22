@@ -121,5 +121,8 @@
       }
     }
   },
-  "defaultProject": "MovieApp"
+  "defaultProject": "MovieApp",
+  "cli": {
+    "analytics": "99dbdf51-dd78-448e-9f72-c50c1ca6fe40"
+  }
 }
