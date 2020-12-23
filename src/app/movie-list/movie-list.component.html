@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-2 bg-secondary">
+            Reklam
+        </div>
+
+        <div class="col-8">
+            <div *ngFor="let movie of moviesResults" class="d-flex justify-content-start">
+                <div class="mb-3 d-flex justify-content-start border-top">
+                    <div class="py-auto">
+                        <img class="mr-3" width="240px" src="https://image.tmdb.org/t/p/w300/{{ movie.backdrop_path }}"
+                            alt="">
+                    </div>
+                    <div>
+                        <h5>{{ movie.title }}</h5>
+                        <p>{{ sumUp(movie.overview) }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="d-flex justify-content-center mt-5" aria-label="...">
+                <ul #pagination class="pagination">
+                    <li class="page-item"><span class="page-link" tabindex="-1">Previous</span>
+                    </li>
+                    <li (click)="onClickPage($event)" class="page-item"><span class="page-link">1</span></li>
+                    <li (click)="onClickPage($event)" class="page-item"><span class="page-link">2</span></li>
+                    <li (click)="onClickPage($event)" class="page-item"><span class="page-link">3</span></li>
+                    <li><span class="page-link">...</span></li>
+                    <li (click)="onClickPage($event)" class="page-item"><span class="page-link">{{ totalPages }}</span>
+                    </li>
+                    <li class="page-item"><span class="page-link">Next</span></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-2  bg-secondary">
+            Reklam
+        </div>
+    </div>
+</div>
