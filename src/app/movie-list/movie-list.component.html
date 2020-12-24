@@ -13,8 +13,9 @@
                             alt="">
                     </div>
                     <div>
-                        <h5>{{ movie.title }}</h5>
+                        <a routerLink='/detail/{{ movie.id }}'><h5>{{ movie.title }}</h5></a>
                         <p>{{ sumUp(movie.overview) }}</p>
+                        <a routerLink='/detail/{{ movie.id }}'><span class="badge bg-info text-dark">read more..</span></a>
                     </div>
                 </div>
             </div>
