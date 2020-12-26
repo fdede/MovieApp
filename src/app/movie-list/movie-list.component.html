@@ -6,7 +6,7 @@
         </div>
 
         <div class="col-8">
-            <div *ngFor="let movie of moviesResults" class="d-flex justify-content-start">
+            <div *ngFor="let movie of searchResults.results" class="d-flex justify-content-start">
                 <div class="mb-3 d-flex justify-content-start border-top">
                     <div class="py-auto">
                         <img class="mr-3" width="240px" src="https://image.tmdb.org/t/p/w300/{{ movie.backdrop_path }}"
@@ -28,7 +28,7 @@
                     <li (click)="onClickPage($event)" class="page-item"><span class="page-link">2</span></li>
                     <li (click)="onClickPage($event)" class="page-item"><span class="page-link">3</span></li>
                     <li><span class="page-link">...</span></li>
-                    <li (click)="onClickPage($event)" class="page-item"><span class="page-link">{{ totalPages }}</span>
+                    <li (click)="onClickPage($event)" class="page-item"><span class="page-link">{{ searchResults.total_pages }}</span>
                     </li>
                     <li class="page-item"><span class="page-link">Next</span></li>
                 </ul>

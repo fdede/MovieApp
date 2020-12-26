@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService, SearchResults } from '../movie.service';
+import { MovieService } from '../movie.service';
+import { SearchResults } from '../SearchResults';
 
 @Component({
   selector: 'movie-list',
@@ -7,11 +8,11 @@ import { MovieService, SearchResults } from '../movie.service';
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit {
-  moviesResults;
-  totalPages;
-  page;
+  searchResults: SearchResults;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService) {
+    this.searchResults = new SearchResults();
+  }
 
   ngOnInit(): void {
     this.getMovie();
@@ -20,16 +21,14 @@ export class MovieListComponent implements OnInit {
   getMovie(): void {
     this.movieService.getData()
       .subscribe(r => {
-        this.moviesResults = r.results;
-        this.totalPages = r.total_pages;
-        this.page = r.page;
+        this.searchResults = r;
       });
   }
 
   onClickPage($event): void {
     console.log($event.target.textContent);
 
-    this.movieService.getData($event.target.textContent).subscribe(r => this.moviesResults = r.results);
+    this.movieService.getData($event.target.textContent).subscribe(r => this.searchResults = r);
   }
 
   sumUp(overview: string): string {

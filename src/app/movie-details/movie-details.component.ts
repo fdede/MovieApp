@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
 
 @Component({
@@ -8,12 +9,14 @@ import { MovieService } from '../movie.service';
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
-  @Input() movie
+  movie: Movie;
 
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService
-  ) { }
+  ) {
+    this.movie = new Movie();
+  }
 
   ngOnInit(): void {
     this.getMovie();
@@ -24,7 +27,6 @@ export class MovieDetailsComponent implements OnInit {
     this.movieService.getMovie(id)
           .subscribe(r => {
             this.movie = r;
-            console.log(this.movie);
           });
   }
 

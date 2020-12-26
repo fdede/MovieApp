@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Movie } from './movie';
+import { SearchResults } from './SearchResults';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +35,7 @@ export class MovieService {
     return this.http.get<SearchResults>(this.popularApiUrl, { params: this.params });
   }
 
-  getMovie(movie_id: number, language?: string): Observable<SearchResults> {
+  getMovie(movie_id: number, language?: string): Observable<Movie> {
     language = language || this.language;
 
     this.params = new HttpParams()
@@ -42,14 +44,7 @@ export class MovieService {
 
     this.movieDetailApiUrl += movie_id.toString();
 
-    return this.http.get<SearchResults>(this.movieDetailApiUrl, { params: this.params});
+    return this.http.get<Movie>(this.movieDetailApiUrl, { params: this.params});
   }
 
-}
-
-export interface SearchResults {
-  total_results: number;
-  results: Array<object>;
-  page: number;
-  total_pages: number;
 }
